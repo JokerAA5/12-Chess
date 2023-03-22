@@ -8,7 +8,6 @@ import java.awt.Point;
  *
  * @author Spac3
  */
-public class General extends Piece {
+public class Lord extends Piece {
     
 }
- 

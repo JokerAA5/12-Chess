@@ -13,24 +13,59 @@ import java.awt.Point;
 public abstract class Piece { //makes sure you have to go through subclasses to use
     
     public int team;
-    public boolean iscaptured;
+    public boolean isCaptured = false;
     private Point position;
     
-    //public abstract void setTeam(int team);
+    public abstract void initialize(int team);
     
-    public abstract boolean isValidMove(Point to, Point from, Piece[][] boardstate); //takes the current possition of the piece and the users desired destination and makes sure its valid
-      
-    public abstract boolean isTaking(Point to, Point from, Piece[][] boardstate); //Point is an imported function of the java standard library 
+    public abstract boolean isValidMove(Point to, Board board); //takes the current possition of the piece and the users desired destination and makes sure its valid
     
-    public void setPosition(Point position){ 
-        this.position = position;
+    public Point getPosition(){ 
+        return this.position;
     }
     
-    public void move(Point to, Point from, Piece[][] boardstate){ //further implemented in subclasses
-        setPosition(to);
-        boardstate[from.y][from.x] = null;
-        boardstate[to.y][to.x] = this;
+    public void setPosition(Point poss){
+        this.position = poss;
     }
     
+    public void setPosition(int x, int y){
+        this.position.x = x;
+        this.position.y = y;
+    }
     
+    public void move(Point to, Board board){ //further implemented in subclasses
+        Point from = this.getPosition();
+        board.updateBoard_null(from);
+        this.setPosition(to);
+        board.updateBoard(to, this);
+    }
+    
+    public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps piece to be controlable 
+        target.isCaptured = true;
+        if(this.team == 2){//if captured piece belonged to team 2
+            for (int i = 4; i <= 5; i++){
+                for (int j = 0; j <= 2; j++){
+                    if(board.checknull(i, j)){
+                        board.updateBoard(i, j, target);
+                        target.team = 1; //change owner
+                        target.position.x = i;
+                        target.position.y = j;
+                    }
+                }
+            }
+        }
+        
+        if(this.team == 1){//if captured piece belonged to team 1
+            for (int i = 6; i <= 7; i++){
+                for (int j = 0; j <= 2; j++){
+                    if(board.checknull(i, j)){
+                        board.updateBoard(i, j, target);
+                        target.team = 2; //change owner
+                        target.position.x = i;
+                        target.position.y = j;
+                    }
+                }
+            }
+        }
+    }
 }
