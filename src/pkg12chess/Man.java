@@ -7,7 +7,7 @@ import java.awt.Point;
 
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public class Man extends Piece { //WIP lord conversion (in the move method at the bottom)
     
@@ -23,6 +23,11 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             this.setPosition(2,1);
         }
     }
+     
+     @Override
+     public String identify(){
+         return "Man";
+     }
     
     @Override
     public boolean isValidMove(Point to, Board board){ //determines rules of movement for this particular piece

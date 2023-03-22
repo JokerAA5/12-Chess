@@ -3,34 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pkg12chess;
-
 import java.awt.Point;
 
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public abstract class Piece { //makes sure you have to go through subclasses to use
     
     public int team;
     public boolean isCaptured = false;
-    private Point position;
+    public  Point position = new Point();
     
     public abstract void initialize(int team);
     
     public abstract boolean isValidMove(Point to, Board board); //takes the current possition of the piece and the users desired destination and makes sure its valid
     
+    public abstract String identify();
+    
     public Point getPosition(){ 
-        return this.position;
+        return position;
     }
     
     public void setPosition(Point poss){
-        this.position = poss;
+        int x = poss.x;
+        int y = poss.y;
+        position.setLocation(x,y);
     }
     
     public void setPosition(int x, int y){
-        this.position.x = x;
-        this.position.y = y;
+        position.setLocation(x,y);
     }
     
     public void move(Point to, Board board){ //further implemented in subclasses
@@ -43,7 +45,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
     public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps the captured pieces team
         target.isCaptured = true;
         if(this.team == 2){//if captured piece belonged to team 2
-            for (int i = 4; i <= 5; i++){
+            for (int i = 4; i <= 5; i++){ //itterates thorugh all slots on capture board to find open spot
                 for (int j = 0; j <= 2; j++){
                     if(board.checknull(i, j)){
                         board.updateBoard(i, j, target);

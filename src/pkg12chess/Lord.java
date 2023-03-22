@@ -6,7 +6,7 @@ package pkg12chess;
 import java.awt.Point;
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public class Lord extends Piece { //FINISHED(?)
     
@@ -20,6 +20,11 @@ public class Lord extends Piece { //FINISHED(?)
             this.team = 2;
         }
     }
+     
+     @Override
+     public String identify(){
+         return "Lord";
+     }
     
     @Override
     public boolean isValidMove(Point to, Board board){ //minister can only move diagonaly

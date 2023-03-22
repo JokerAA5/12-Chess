@@ -6,7 +6,7 @@ package pkg12chess;
 import java.awt.Point;
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public class General extends Piece { //FINISHED(?)
     
@@ -22,6 +22,11 @@ public class General extends Piece { //FINISHED(?)
             this.setPosition(3,0);
         }
     }
+     
+     @Override
+     public String identify(){
+         return "General";
+     }
     
     @Override
     public boolean isValidMove(Point to, Board board){ //general can only move one place up, down ,left, right (no diag)

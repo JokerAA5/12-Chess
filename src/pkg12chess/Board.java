@@ -6,20 +6,20 @@ package pkg12chess;
 import java.awt.Point;
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public class Board {
     public Piece board[][];
     
 public void Board_init (){ // initializes the board
-    board = new Piece[2][7];
+    board = new Piece[3][8];
     //board should look like this with the right most #C spaces representing the capture hold spaces. 
-    //Pieces can only move to #C spaces with the capture function and are driven out with the normal move function.
-    //#C spaces are initalized as NULL
-    // - is NULL
     // 1Mi - -  2G  1C 1C 2C 2C
     // 1K 1M 2M 2K  1C 1C 2C 2C
     // 1G  - -  2Mi 1C 1C 2C 2C
+    //Pieces can only move to #C spaces with the capture function and are driven out with the normal move function.
+    //#C spaces are initalized as NULL
+    // - is NULL
     board[0][0] = new General(); // general team 1
     board[0][0].initialize(1);
     board[1][0] = new King(); // king team 1
@@ -84,6 +84,57 @@ public boolean checknull(int x, int y){
         return true;
     }
     else return false;
+}
+
+public String identify(Point poss, Board b){
+    if(b.getPiece(poss) != null){
+        return board[poss.y][poss.x].identify();
+    }
+    else return "null";
+}
+
+public String identify(int x, int y, Board b){
+    if(b.getPiece(x, y) != null){
+        return board[y][x].identify();
+    }
+    else return "null";
+}
+
+public void drawBoard(Board board){ //prints the current board state onto the console row wise ([2][0-7] gets drawn first)
+    for(int i = 2; i >= 0; i--){ //y
+        for(int j = 0; j <= 7; j++){ //x
+            switch(board.identify(j, i, board)){
+                case "Man":
+                    System.out.print("Ma");
+                    break;
+                    
+                case "King":
+                    System.out.print("Ki");
+                    break;
+                    
+                case "General":
+                    System.out.print("Ge");
+                    break;
+                    
+                case "Minister":
+                    System.out.print("Mi");
+                    break;
+                    
+                case "Lord":
+                    System.out.print("Lo");
+                    break;
+                    
+                case "null":
+                    System.out.print("--");
+                    break;
+                    
+                default:
+                    System.out.print("ER");
+                    break;
+            }
+        }
+        System.out.println("");
+    }
 }
 
 }

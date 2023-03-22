@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package pkg12chess;
+import java.awt.Point;
 
 /**
  *
- * @author Nate
+ * @author Nate, Spac3(Michael)
  */
 public class Main {
 
@@ -15,6 +16,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Board gameboard = new Board();
+        gameboard.Board_init();
+        gameboard.drawBoard(gameboard);
     }
     
 }

@@ -6,7 +6,7 @@ package pkg12chess;
 import java.awt.Point;
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public class King extends Piece{ //FINISHED(?)
     
@@ -23,6 +23,11 @@ public class King extends Piece{ //FINISHED(?)
             this.setPosition(3,1);
         }
     }
+     
+     @Override
+     public String identify(){
+         return "King";
+     }
     
     @Override
     public boolean isValidMove(Point to, Board board){ //king can move one space in any direction
