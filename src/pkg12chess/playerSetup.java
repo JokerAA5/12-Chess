@@ -57,6 +57,11 @@ boolean playerTwoReady = false;
         playerOneInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         playerOneInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         playerOneInput.setName("playerOneInput"); // NOI18N
+        playerOneInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playerOneInputActionPerformed(evt);
+            }
+        });
 
         gameStart.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         gameStart.setText("Start");
@@ -130,7 +135,7 @@ boolean playerTwoReady = false;
                     .addComponent(playerTwoDone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72)
                 .addComponent(gameStart, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(73, 73, 73))
         );
 
         pack();
@@ -161,6 +166,10 @@ boolean playerTwoReady = false;
         playerTwoColor = (String)playerTwoDrop.getSelectedItem();
         playerTwoReady = true;
     }//GEN-LAST:event_playerTwoDoneActionPerformed
+
+    private void playerOneInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerOneInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_playerOneInputActionPerformed
     
     /**
      * @param args the command line arguments
