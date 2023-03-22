@@ -8,6 +8,70 @@ import java.awt.Point;
  *
  * @author Spac3
  */
-public class King extends Piece{
+public class King extends Piece{ //FINISHED(?)
     
+    @Override
+     public void initialize(int team){ 
+    //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked/initalized separately in the Board class
+        if(team == 1){
+            this.team = 1;
+            this.setPosition(0,1);
+        }
+        
+        if(team == 2){
+            this.team = 2;
+            this.setPosition(3,1);
+        }
+    }
+    
+    @Override
+    public boolean isValidMove(Point to, Board board){ //king can move one space in any direction
+        Piece hold = board.getPiece(to); //hold destination contents
+        Point from = this.getPosition(); //hold current possition cordinates
+        int dx = Math.abs(to.x - from.x);
+        int dy = Math.abs(to.y - from.y);
+        
+        if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
+            if(this.team == 1){ //team 1 is on the left so piece will move right
+                if(((dy == 1) && (dx == 1)) || ((dy == 0) && (dx == 1)) || ((dy == 1) && (dx == 0))){
+                    if(this.team != hold.team){ //check to make sure it wont run into friendly piece
+                        if(this.isCaptured && hold != null && to.x == 3){ //if its captured just make sure the space is empty and not the enemy territory 
+                            return false;
+                        }
+                        return true;
+                    }
+                   else return false;
+                }
+            }
+
+            if(this.team == 2){  //team 2 is on the right so piece will move left
+                if(((dy == 1) && (dx == 1)) || ((dy == 0) && (dx == 1)) || ((dy == 1) && (dx == 0))){
+                    if(this.team != hold.team){
+                        if(this.isCaptured && hold != null && to.x == 0){ 
+                            return false;
+                        }
+                        return true;
+                    }
+                   else return false;
+                }
+            }
+        }
+        return false; //if nothing
+    }
+           
+     @Override
+     public void move(Point to, Board board){
+         Point from = this.getPosition(); //get current possition for from 
+         Piece hold = board.getPiece(to); //get value held in target space
+         if(isValidMove(to, board)){
+             
+             if(hold != null && hold.team != this.team){
+                 capture(hold, board);
+             }
+             
+             this.setPosition(to); //set possition in instance
+             board.updateBoard(to, this); //update board
+             board.updateBoard_null(from); // clear last space
+         }
+     }      
 }

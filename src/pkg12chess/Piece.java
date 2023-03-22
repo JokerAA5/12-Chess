@@ -40,7 +40,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         board.updateBoard(to, this);
     }
     
-    public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps piece to be controlable 
+    public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps the captured pieces team
         target.isCaptured = true;
         if(this.team == 2){//if captured piece belonged to team 2
             for (int i = 4; i <= 5; i++){

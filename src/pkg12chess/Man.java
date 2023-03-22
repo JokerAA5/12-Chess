@@ -9,7 +9,7 @@ import java.awt.Point;
  *
  * @author Spac3
  */
-public class Man extends Piece {
+public class Man extends Piece { //WIP lord conversion (in the move method at the bottom)
     
     @Override
      public void initialize(int team){ //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked separately
@@ -34,10 +34,10 @@ public class Man extends Piece {
         if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
             if(this.team == 1){ //team 1 is on the left so piece will move right
                 if((dy == 0) && (dx == 1)){
-                    if(this.team != hold.team){ //check to make sure it wont run into friendly piece
-                        return true;
-                   }
-                    if(this.isCaptured && hold == null && to.x != 3){ //if its captured just make sure the space is empty and not the enemy territory 
+                    if(this.team != hold.team){
+                        if(this.isCaptured && hold != null && to.x == 3){ //captured pieces can onlt be placed in empty spots that are not in the other players territory
+                            return false;
+                        }
                         return true;
                     }
                    else return false;
@@ -45,11 +45,11 @@ public class Man extends Piece {
             }
 
             if(this.team == 2){  //team 2 is on the right so piece will move left
-                if((dy == 0) && (dx == -1)){
+                if((dy == 0) && (dx == -1)){ //man pieces can only move in one direction dependant on team so direction matters internaly 
                     if(this.team != hold.team){
-                        return true;
-                   }
-                    if(this.isCaptured && hold == null && to.x != 0){ 
+                        if(this.isCaptured && hold != null && to.x == 0){ 
+                            return false;
+                        }
                         return true;
                     }
                    else return false;
@@ -72,6 +72,14 @@ public class Man extends Piece {
              this.setPosition(to); //set possition in instance
              board.updateBoard(to, this); //update board
              board.updateBoard_null(from); // clear last space
+             
+             if(to.x == 3){ //if the desired move space is the enemy territory change to a feudal lord (this should only be present in the Man subclass)
+                 Piece lord = new Lord();
+                 lord.initialize(this.team); // set lord team as team of man
+                 lord.setPosition(this.getPosition()); // set lord internal position as the internal position of man
+                 board.updateBoard_null(to); //clear spot
+                 board.updateBoard(to, lord); //place lord in spot
+             }
          }
      }  
 }
