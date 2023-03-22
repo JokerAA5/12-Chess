@@ -13,6 +13,7 @@ import java.awt.Point;
 public abstract class Piece { //makes sure you have to go through subclasses to use
     
     public int team;
+    public boolean iscaptured;
     private Point position;
     
     //public abstract void setTeam(int team);
@@ -21,7 +22,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
       
     public abstract boolean isTaking(Point to, Point from, Piece[][] boardstate); //Point is an imported function of the java standard library 
     
-    public void setPosition(Point position){
+    public void setPosition(Point position){ 
         this.position = position;
     }
     
@@ -30,10 +31,6 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         boardstate[from.y][from.x] = null;
         boardstate[to.y][to.x] = this;
     }
-    
-    
-    
-    
     
     
 }
