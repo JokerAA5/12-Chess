@@ -135,17 +135,17 @@ boolean playerTwoReady = false;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Confirms both players are ready and moves to game screen
     private void gameStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameStartActionPerformed
         if (playerOneReady && playerTwoReady)
         {
             this.setVisible(false);
             new gameBoard().setVisible(true);
         } else {
-            
+            //Create a pop up letting the players know both need to hit done before continuing
         }
     }//GEN-LAST:event_gameStartActionPerformed
-
+    //Gathers player 1's settings and locks them in
     private void playerOneDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerOneDoneActionPerformed
         playerOneInput.setEditable(false);
         playerOneDrop.setEnabled(false);
@@ -153,7 +153,7 @@ boolean playerTwoReady = false;
         playerOneColor = (String)playerOneDrop.getSelectedItem();
         playerOneReady = true;
     }//GEN-LAST:event_playerOneDoneActionPerformed
-
+    //Gathers player 2's settings and locks them in
     private void playerTwoDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerTwoDoneActionPerformed
         playerTwoInput.setEditable(false);
         playerTwoDrop.setEnabled(false);
