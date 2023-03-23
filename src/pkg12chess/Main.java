@@ -16,8 +16,22 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Point to = new Point();
+        Point too = new Point();
+        Piece hold;
+        to.setLocation(1,0);
+        too.setLocation(2,1);
+        
         Board gameboard = new Board();
         gameboard.Board_init();
+        gameboard.drawBoard(gameboard);
+        
+        gameboard.board[0][0].move(to, gameboard);
+        gameboard.board[1][1].move(too, gameboard);
+        
+        //hold = gameboard.getPiece(1, 0);
+        //System.out.print(hold.identify());
+        
         gameboard.drawBoard(gameboard);
     }
     

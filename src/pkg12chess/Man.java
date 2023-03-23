@@ -35,11 +35,16 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
         Point from = this.getPosition(); //hold current possition cordinates
         int dx = (to.x - from.x);
         int dy = Math.abs(to.y - from.y); //man can only move forward but good to keep track
+        int tea;
+        if(hold != null){
+            tea = hold.team;
+        }
+        else tea = 0;
         
         if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
             if(this.team == 1){ //team 1 is on the left so piece will move right
                 if((dy == 0) && (dx == 1)){
-                    if(this.team != hold.team){
+                    if(this.team != tea){
                         if(this.isCaptured && hold != null && to.x == 3){ //captured pieces can onlt be placed in empty spots that are not in the other players territory
                             return false;
                         }
@@ -51,7 +56,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
 
             if(this.team == 2){  //team 2 is on the right so piece will move left
                 if((dy == 0) && (dx == -1)){ //man pieces can only move in one direction dependant on team so direction matters internaly 
-                    if(this.team != hold.team){
+                    if(this.team != tea){
                         if(this.isCaptured && hold != null && to.x == 0){ 
                             return false;
                         }
@@ -68,15 +73,20 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
      public void move(Point to, Board board){
          Point from = this.getPosition(); //get current possition for from 
          Piece hold = board.getPiece(to); //get value held in target space
+         int tea;
+         if(hold != null){
+            tea = hold.team;
+         }
+         else tea = 0;
          if(isValidMove(to, board)){
              
-             if(hold != null && hold.team != this.team){
+             if(hold != null && tea != this.team){
                  capture(hold, board);
              }
              
-             this.setPosition(to); //set possition in instance
              board.updateBoard(to, this); //update board
              board.updateBoard_null(from); // clear last space
+             this.setPosition(to); //set possition in instance
              
              if(to.x == 3){ //if the desired move space is the enemy territory change to a feudal lord (this should only be present in the Man subclass)
                  Piece lord = new Lord();

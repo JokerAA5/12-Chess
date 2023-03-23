@@ -44,7 +44,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
     
     public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps the captured pieces team
         target.isCaptured = true;
-        if(this.team == 2){//if captured piece belonged to team 2
+        if(target.team == 2){//if captured piece belonged to team 2
             for (int i = 4; i <= 5; i++){ //itterates thorugh all slots on capture board to find open spot
                 for (int j = 0; j <= 2; j++){
                     if(board.checknull(i, j)){
@@ -52,12 +52,13 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
                         target.team = 1; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        return;
                     }
                 }
             }
         }
         
-        if(this.team == 1){//if captured piece belonged to team 1
+        if(target.team == 1){//if captured piece belonged to team 1
             for (int i = 6; i <= 7; i++){
                 for (int j = 0; j <= 2; j++){
                     if(board.checknull(i, j)){
@@ -65,6 +66,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
                         target.team = 2; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        return;
                     }
                 }
             }
