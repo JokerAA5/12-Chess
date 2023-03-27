@@ -2,35 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pkg12chess;
+package Model;
 import java.awt.Point;
 /**
  *
  * @author Spac3(Michael)
  */
-public class King extends Piece{ //FINISHED(?)
+public class Minister extends Piece { //FINISHED(?)
     
     @Override
-     public void initialize(int team){ 
-    //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked/initalized separately in the Board class
+     public void initialize(int team){ //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked separately
         if(team == 1){
             this.team = 1;
-            this.setPosition(0,1);
+            this.setPosition(0,2);
         }
         
         if(team == 2){
             this.team = 2;
-            this.setPosition(3,1);
+            this.setPosition(3,0);
         }
     }
      
      @Override
      public String identify(){
-         return "King";
+         return "Minister";
      }
     
     @Override
-    public boolean isValidMove(Point to, Board board){ //king can move one space in any direction
+    public boolean isValidMove(Point to, Board board){ //minister can only move diagonaly
         Piece hold = board.getPiece(to); //hold destination contents
         Point from = this.getPosition(); //hold current possition cordinates
         int dx = Math.abs(to.x - from.x);
@@ -43,7 +42,7 @@ public class King extends Piece{ //FINISHED(?)
         
         if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
             if(this.team == 1){ //team 1 is on the left so piece will move right
-                if(((dy == 1) && (dx == 1)) || ((dy == 0) && (dx == 1)) || ((dy == 1) && (dx == 0))){
+                if((dy == 1) && (dx == 1)){ //minister can only move diagonaly 
                     if(this.team != tea){ //check to make sure it wont run into friendly piece
                         if(this.isCaptured && hold != null && to.x == 3){ //if its captured just make sure the space is empty and not the enemy territory 
                             return false;
@@ -55,7 +54,7 @@ public class King extends Piece{ //FINISHED(?)
             }
 
             if(this.team == 2){  //team 2 is on the right so piece will move left
-                if(((dy == 1) && (dx == 1)) || ((dy == 0) && (dx == 1)) || ((dy == 1) && (dx == 0))){
+                if((dy == 1) && (dx == 1)){
                     if(this.team != tea){
                         if(this.isCaptured && hold != null && to.x == 0){ 
                             return false;
@@ -74,7 +73,7 @@ public class King extends Piece{ //FINISHED(?)
          Point from = this.getPosition(); //get current possition for from 
          Piece hold = board.getPiece(to); //get value held in target space
          int tea;
-        if(hold != null){
+         if(hold != null){
             tea = hold.team;
         }
         else tea = 0;
@@ -88,5 +87,6 @@ public class King extends Piece{ //FINISHED(?)
              board.updateBoard_null(from); // clear last space
              this.setPosition(to); //set possition in instance
          }
-     }      
+     }
 }
+

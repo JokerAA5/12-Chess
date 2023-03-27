@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package pkg12chess;
+package Model;
 import java.awt.Point;
 
 /**
@@ -32,6 +32,10 @@ public class Main {
         //hold = gameboard.getPiece(1, 0);
         //System.out.print(hold.identify());
         
+        gameboard.drawBoard(gameboard);
+        
+        to.setLocation(3,1);
+        gameboard.board[1][2].move(to, gameboard);
         gameboard.drawBoard(gameboard);
     }
     

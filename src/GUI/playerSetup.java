@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pkg12chess;
+package GUI;
 
-import pkg12chess.gameBoard;
+import GUI.gameBoard;
 
 /**
  *
