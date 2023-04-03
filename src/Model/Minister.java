@@ -10,6 +10,11 @@ import java.awt.Point;
  */
 public class Minister extends Piece { //FINISHED(?)
     
+    /**
+     * This method will place the Minister Piece on the board as part of initial
+     * setup
+     * @param team Whichever Player this piece belongs to
+     */
     @Override
      public void initialize(int team){ //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked separately
         if(team == 1){
@@ -23,11 +28,23 @@ public class Minister extends Piece { //FINISHED(?)
         }
     }
      
+     /**
+      * This method will return the name of the piece
+      * @return A string Minister
+      */
      @Override
      public String identify(){
          return "Minister";
      }
     
+    /**
+     * This method will check if the move the Minister Piece has made is legal
+     * in that it has moved in a valid direction and has not ran into any other 
+     * player pieces.
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that then move will be checked to see if valid on
+     * @return A Boolean Value on whether or not the move is legal
+     */
     @Override
     public boolean isValidMove(Point to, Board board){ //minister can only move diagonaly
         Piece hold = board.getPiece(to); //hold destination contents
@@ -68,7 +85,13 @@ public class Minister extends Piece { //FINISHED(?)
         return false; //if nothing
     }
            
-     @Override
+    /**
+     * This method will move the Minister piece from its current space to its
+     * selected movement space.
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that the move will be displayed on
+     */ 
+    @Override
      public void move(Point to, Board board){
          Point from = this.getPosition(); //get current possition for from 
          Piece hold = board.getPiece(to); //get value held in target space

@@ -10,6 +10,11 @@ import java.awt.Point;
  */
 public class General extends Piece { //FINISHED(?)
     
+    /**
+     * This method will place the General Piece on the board as part of initial
+     * setup
+     * @param team Whichever Player this piece belongs to
+     */
     @Override
      public void initialize(int team){ //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked separately
         if(team == 1){
@@ -22,12 +27,22 @@ public class General extends Piece { //FINISHED(?)
             this.setPosition(3,2);
         }
     }
-     
+     /**
+      * This method returns the name of this piece
+      * @return The String General
+      */
      @Override
      public String identify(){
          return "General";
      }
-    
+    /**
+     * This method will check if The move the General Piece has made is legal
+     * in the fact that it can only move one space up down left or right and that
+     * it will not run into another piece of the same player. 
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that then move will be checked to see if valid on
+     * @return A Boolean Value on whether or not the move is legal
+     */
     @Override
     public boolean isValidMove(Point to, Board board){ //general can only move one place up, down ,left, right (no diag)
         Piece hold = board.getPiece(to); //hold destination contents
@@ -67,7 +82,12 @@ public class General extends Piece { //FINISHED(?)
         }
         return false; //if nothing
     }
-           
+     /**
+      * This method will move the General piece from its current space to its
+      * selected movement space.
+      * @param to This is the space the piece will be moving to
+      * @param board This is the Board Object that the move will be displayed on
+      */   
      @Override
      public void move(Point to, Board board){
          Point from = this.getPosition(); //get current possition for from 

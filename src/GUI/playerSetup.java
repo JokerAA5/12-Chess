@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import GUI.gameBoard;
+/**import GUI.gameBoard; 
 
 /**
  *
@@ -13,7 +13,7 @@ import GUI.gameBoard;
 public class playerSetup extends javax.swing.JFrame {
 
     /**
-     * Creates new form playerSetup
+     * Creates the form for the Players to set up their names and colors
      */
     public playerSetup() {
         initComponents();
@@ -136,6 +136,12 @@ boolean playerTwoReady = false;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method will check to see if both players are ready to start and 
+     * create a new gameBoard object to play on moving on from the character creation
+     * screen
+     * @param evt An event signifying the Start Button was pressed
+     */
     private void gameStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameStartActionPerformed
         if (playerOneReady && playerTwoReady)
         {
@@ -145,7 +151,12 @@ boolean playerTwoReady = false;
             
         }
     }//GEN-LAST:event_gameStartActionPerformed
-
+    /**
+     * This method will signify Player 1 is Done and have their username for the
+     * game set along with the color of their pieces while preventing them from
+     * editing their name/color further
+     * @param evt An event signifying the Player 1 Done Button was pressed
+     */
     private void playerOneDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerOneDoneActionPerformed
         playerOneInput.setEditable(false);
         playerOneDrop.setEnabled(false);
@@ -153,7 +164,12 @@ boolean playerTwoReady = false;
         playerOneColor = (String)playerOneDrop.getSelectedItem();
         playerOneReady = true;
     }//GEN-LAST:event_playerOneDoneActionPerformed
-
+    /**
+     * This method will signify Player 2 is Done and has their username for the
+     * game set along with the color of their pieces while preventing them from
+     * editing their name/color further
+     * @param evt An event signifying the Player 2 Done Button was pressed
+     */
     private void playerTwoDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerTwoDoneActionPerformed
         playerTwoInput.setEditable(false);
         playerTwoDrop.setEnabled(false);

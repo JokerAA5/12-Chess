@@ -11,6 +11,11 @@ import java.awt.Point;
  */
 public class Man extends Piece { //WIP lord conversion (in the move method at the bottom)
     
+    /**
+     * This method will place the Man Piece on the board as part of initial
+     * setup
+     * @param team Whichever Player this piece belongs to
+     */
     @Override
      public void initialize(int team){ //sets starting position in internal data depending on team so movement is tracked accurately once stuff starts moving. Board location is tracked separately
         if(team == 1){
@@ -23,12 +28,23 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             this.setPosition(2,1);
         }
     }
-     
+     /**
+      * This method will return the name of the piece
+      * @return A string Man
+      */
      @Override
      public String identify(){
          return "Man";
      }
     
+    /**
+     * This method will check if the move the Man Piece has made is legal
+     * in that it has moved in a valid direction and has not ran into any other 
+     * player pieces.
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that then move will be checked to see if valid on
+     * @return A Boolean Value on whether or not the move is legal
+     */
     @Override
     public boolean isValidMove(Point to, Board board){ //determines rules of movement for this particular piece
         Piece hold = board.getPiece(to); //hold destination contents
@@ -69,7 +85,13 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
         return false; //if nothing
     }
            
-     @Override
+    /**
+     * This method will move the Man piece from its current space to its
+     * selected movement space.
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that the move will be displayed on
+     */ 
+    @Override
      public void move(Point to, Board board){
          Point from = this.getPosition(); //get current possition for from 
          Piece hold = board.getPiece(to); //get value held in target space

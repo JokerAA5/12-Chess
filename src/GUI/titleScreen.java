@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import GUI.playerSetup;
+/**import GUI.playerSetup;
 
 /**
  *
@@ -13,7 +13,7 @@ import GUI.playerSetup;
 public class titleScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form titleScreen
+     * Creates Title Screen for players to move to name/color selection
      */
     public titleScreen() {
         initComponents();
@@ -72,7 +72,11 @@ public class titleScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * This method will move from the Title Screen to the Player setup screen once
+     * a user has clicked the Game Start Button
+     * @param evt Event signifying the Game Start Button was pressed
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         new playerSetup().setVisible(true);

@@ -8,8 +8,10 @@ import java.awt.Point;
  *
  * @author Spac3(Michael)
  */
+
 public class Board {
     public Piece board[][];
+    
     
 public void Board_init (){ // initializes the board
     board = new Piece[3][8];
@@ -47,6 +49,7 @@ public void Board_init (){ // initializes the board
         }
     }
 }    
+
 
 public Piece getPiece(Point poss){
     return board[poss.y][poss.x];
@@ -100,6 +103,10 @@ public String identify(int x, int y, Board b){
     else return "null";
 }
 
+/**
+ * This Method will draw the board in the console for users to play
+ * @param board The Board the game will be played on
+ */
 public void drawBoard(Board board){ //prints the current board state onto the console row wise ([2][0-7] gets drawn first)
     for(int i = 2; i >= 0; i--){ //y
         for(int j = 0; j <= 7; j++){ //x

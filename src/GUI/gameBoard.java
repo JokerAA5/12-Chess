@@ -11,7 +11,7 @@ package GUI;
 public class gameBoard extends javax.swing.JFrame {
 
     /**
-     * Creates new form gameBoard
+     * This will create the Game Board for the players to play on
      */
     public gameBoard() {
         initComponents();
