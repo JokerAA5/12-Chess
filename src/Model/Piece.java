@@ -2,37 +2,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pkg12chess;
-
+package Model;
 import java.awt.Point;
 
 /**
  *
- * @author Spac3
+ * @author Spac3(Michael)
  */
 public abstract class Piece { //makes sure you have to go through subclasses to use
     
     public int team;
     public boolean isCaptured = false;
-    private Point position;
+    public  Point position = new Point();
     
     public abstract void initialize(int team);
     
     public abstract boolean isValidMove(Point to, Board board); //takes the current possition of the piece and the users desired destination and makes sure its valid
     
+    public abstract String identify();
+    /**
+     * This method will get the current position of a piece
+     * @return Returns the current position of the piece
+     */
     public Point getPosition(){ 
-        return this.position;
+        return position;
     }
-    
+    /**
+     * This method will set the current position of the Piece on the Board
+     * @param poss The current cooridnate positions of the piece
+     */
     public void setPosition(Point poss){
-        this.position = poss;
+        int x = poss.x;
+        int y = poss.y;
+        position.setLocation(x,y);
     }
     
     public void setPosition(int x, int y){
-        this.position.x = x;
-        this.position.y = y;
+        position.setLocation(x,y);
     }
     
+    /**
+     * This method will move the piece on a board to another spot
+     * @param to This is the space the piece will be moving to
+     * @param board This is the Board Object that the move will be displayed on
+     */
     public void move(Point to, Board board){ //further implemented in subclasses
         Point from = this.getPosition();
         board.updateBoard_null(from);
@@ -40,22 +53,28 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         board.updateBoard(to, this);
     }
     
-    public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps piece to be controlable 
+    /**
+     * This method will process a piece capturing another piece
+     * @param target This is the Piece being targeted to be removed into the Capture Zone
+     * @param board This is the Board Object that the capture will be displayed on
+     */
+    public void capture(Piece target, Board board){ //capture function that moves the targeted piece to the hold for your team and swaps the captured pieces team
         target.isCaptured = true;
-        if(this.team == 2){//if captured piece belonged to team 2
-            for (int i = 4; i <= 5; i++){
+        if(target.team == 2){//if captured piece belonged to team 2
+            for (int i = 4; i <= 5; i++){ //itterates thorugh all slots on capture board to find open spot
                 for (int j = 0; j <= 2; j++){
                     if(board.checknull(i, j)){
                         board.updateBoard(i, j, target);
                         target.team = 1; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        return;
                     }
                 }
             }
         }
         
-        if(this.team == 1){//if captured piece belonged to team 1
+        if(target.team == 1){//if captured piece belonged to team 1
             for (int i = 6; i <= 7; i++){
                 for (int j = 0; j <= 2; j++){
                     if(board.checknull(i, j)){
@@ -63,6 +82,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
                         target.team = 2; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        return;
                     }
                 }
             }
