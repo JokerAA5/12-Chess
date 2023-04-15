@@ -57,6 +57,11 @@ public class Minister extends Piece { //FINISHED(?)
         }
         else tea = 0;
         
+        if(this.isCaptured){ //spoof normal change in location if in capture bank
+           dx = 1;
+           dy = 1;
+        }
+        
         if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
             if(this.team == 1){ //team 1 is on the left so piece will move right
                 if((dy == 1) && (dx == 1)){ //minister can only move diagonaly 

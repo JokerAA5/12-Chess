@@ -41,6 +41,10 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         position.setLocation(x,y);
     }
     
+    public int getTeam(){
+        return team;
+    }
+    
     /**
      * This method will move the piece on a board to another spot
      * @param to This is the space the piece will be moving to
@@ -62,7 +66,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         target.isCaptured = true;
         if(target.team == 2){//if captured piece belonged to team 2
             for (int i = 4; i <= 5; i++){ //itterates thorugh all slots on capture board to find open spot
-                for (int j = 0; j <= 2; j++){
+                for (int j = 2; j >= 0; j--){
                     if(board.checknull(i, j)){
                         board.updateBoard(i, j, target);
                         target.team = 1; //change owner
@@ -76,7 +80,7 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
         
         if(target.team == 1){//if captured piece belonged to team 1
             for (int i = 6; i <= 7; i++){
-                for (int j = 0; j <= 2; j++){
+                for (int j = 2; j >= 0; j--){
                     if(board.checknull(i, j)){
                         board.updateBoard(i, j, target);
                         target.team = 2; //change owner

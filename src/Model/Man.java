@@ -57,6 +57,17 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
         }
         else tea = 0;
         
+        if(this.isCaptured){ //spoof normal change in location if in capture bank
+            if(this.team == 1){
+                dx = 1;
+                dy = 0;
+            }
+            if(this.team == 2){
+                dx = -1;
+                dy = 0;
+            }
+        }
+        
         if(to.x >= 0 && to.x <= 3 && to.y >= 0 && to.y <= 2){ //within bounds of play
             if(this.team == 1){ //team 1 is on the left so piece will move right
                 if((dy == 0) && (dx == 1)){
