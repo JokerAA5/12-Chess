@@ -79,7 +79,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             if (this.team == 1) { //team 1 is on the left so piece will move right
                 if ((dy == 0) && (dx == 1)) {
                     if (this.team != tea) {
-                        if (this.isCaptured && hold != null && to.x == 3) { //captured pieces can onlt be placed in empty spots that are not in the other players territory
+                        if (this.isCaptured && hold != null) { //captured pieces can only be placed in empty spots
                             return false;
                         }
                         return true;
@@ -92,7 +92,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             if (this.team == 2) {  //team 2 is on the right so piece will move left
                 if ((dy == 0) && (dx == -1)) { //man pieces can only move in one direction dependant on team so direction matters internaly 
                     if (this.team != tea) {
-                        if (this.isCaptured && hold != null && to.x == 0) {
+                        if (this.isCaptured && hold != null) {
                             return false;
                         }
                         return true;

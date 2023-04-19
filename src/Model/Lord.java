@@ -71,7 +71,7 @@ public class Lord extends Piece { //FINISHED(?)
             if (this.team == 1) { //team 1 is on the left so piece will move right
                 if (((dy == 1) && (dx == 1)) || ((dy == 1) && (dx == 0)) || ((dy == 0) && (dx == 1)) || ((dy == 0) && (dx == -1))) { //lord an move every direction but diagonaly backwards with front towards enemy
                     if (this.team != tea) { //check to make sure it wont run into friendly piece
-                        if (this.isCaptured && hold != null && to.x == 3) { //if its captured just make sure the space is empty and not the enemy territory 
+                        if (this.isCaptured && hold != null) { //if its captured just make sure the space is empty 
                             return false;
                         }
                         return true;
@@ -84,7 +84,7 @@ public class Lord extends Piece { //FINISHED(?)
             if (this.team == 2) {  //team 2 is on the right so piece will move left
                 if (((dy == 1) && (dx == -1)) || ((dy == 1) && (dx == 0)) || ((dy == 0) && (dx == 1)) || ((dy == 0) && (dx == -1))) {
                     if (this.team != tea) {
-                        if (this.isCaptured && hold != null && to.x == 0) {
+                        if (this.isCaptured && hold != null) {
                             return false;
                         }
                         return true;

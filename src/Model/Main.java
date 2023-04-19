@@ -4,15 +4,16 @@
  */
 package Model;
 
+import javax.swing.JFrame;
 import java.awt.Point;
 import java.util.Scanner;
+import GUI.test;
 
 /**
  *
  * @author Nate, Spac3(Michael)
  */
 public class Main {
-
     /**
      * @param args the command line arguments
      */
@@ -20,21 +21,28 @@ public class Main {
         Board board = new Board(); //new board object
         board.Board_init(); //initialize the board
         Point to = new Point(); //Point that holds the translated user input
+        Point from = new Point();
         int pTurn = 1; //player turn flag
         int win = 0; //win flag
         int win1hold = 0; //hold variables for the king must stay in hostile terrirtory for 1 turn for win rule
         int win2hold = 0;
         int game = 1; //game status flag
+        
+        //GUI TESTING
+        //JFrame test = new test();
+        //test.setVisible(true);
+        //END TESTING
 
         while (game == 1) {
-            if (checkWin(board) == 0) { //check for dead kings, then go if none
+            if (checkWin(board) != 2 && checkWin(board) !=3) { //check for dead kings, then go if none
                 board.drawBoard(board); //display board
                 while (pTurn == 1) { //Player 1 loop
                     playerOneTurn(board);
                     pTurn = 2; //once done change turn
                 }
             }
-            if (win2hold == 0 && checkWin(board) == 0) {//check for dead kings and if the P2 king has been in enemy teritory for one turn if none of either then continue
+            
+            if (win2hold == 0 && checkWin(board) != 1) {//check for dead kings and if the P2 king has been in enemy teritory for one turn if none of either then continue
                 board.drawBoard(board);//display board
                 while (pTurn == 2) {// player 2 loop
                     playerTwoTurn(board);
@@ -100,11 +108,11 @@ public class Main {
             to.setLocation(translateInput(userTo));//translate the user string input into Point data type and set to the to and from variables
             from.setLocation(translateInput(userFrom));
 
-            if (!b.checknull(from) && b.board[from.y][from.x].isValidMove(to, b) && b.board[from.y][from.x].team == 1) { //make sure the requested move is actually moving a valid piece and that the move is valid
+            if (!b.checknull(from) && b.board[from.y][from.x].isValidMove(to, b) && b.board[from.y][from.x].team == 1) {//make sure the requested move is actually moving a valid piece and that the move is valid
                 b.board[from.y][from.x].move(to, b);
                 flag = 1;
             } else {
-                System.out.print("invalid move \n"); //move fail print
+                System.out.print("invalid move \n");//move fail print
             }
         }
     }

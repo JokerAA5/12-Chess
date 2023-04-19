@@ -4,9 +4,8 @@
  */
 package GUI;
 
-/**import GUI.gameBoard; 
-
 /**
+ * import GUI.gameBoard; * /**
  *
  * @author Nate
  */
@@ -18,12 +17,13 @@ public class playerSetup extends javax.swing.JFrame {
     public playerSetup() {
         initComponents();
     }
-String playerOneName;
-String playerTwoName;
-String playerOneColor;
-String playerTwoColor;
-boolean playerOneReady = false;
-boolean playerTwoReady = false;
+    String playerOneName;
+    String playerTwoName;
+    String playerOneColor;
+    String playerTwoColor;
+    boolean playerOneReady = false;
+    boolean playerTwoReady = false;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,51 +163,53 @@ boolean playerTwoReady = false;
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * This method will check to see if both players are ready to start and 
-     * create a new gameBoard object to play on moving on from the character creation
-     * screen
+     * This method will check to see if both players are ready to start and
+     * create a new gameBoard object to play on moving on from the character
+     * creation screen
+     *
      * @param evt An event signifying the Start Button was pressed
      */
     private void gameStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameStartActionPerformed
-        if (playerOneReady && playerTwoReady)
-        {
+        if (playerOneReady && playerTwoReady) {
             this.setVisible(false);
             new gameBoard().setVisible(true);
         } else {
-            
+
         }
     }//GEN-LAST:event_gameStartActionPerformed
     /**
      * This method will signify Player 1 is Done and have their username for the
      * game set along with the color of their pieces while preventing them from
      * editing their name/color further
+     *
      * @param evt An event signifying the Player 1 Done Button was pressed
      */
     private void playerOneDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerOneDoneActionPerformed
         playerOneInput.setEditable(false);
         playerOneDrop.setEnabled(false);
         playerOneName = playerOneInput.getText();
-        playerOneColor = (String)playerOneDrop.getSelectedItem();
+        playerOneColor = (String) playerOneDrop.getSelectedItem();
         playerOneReady = true;
     }//GEN-LAST:event_playerOneDoneActionPerformed
     /**
      * This method will signify Player 2 is Done and has their username for the
      * game set along with the color of their pieces while preventing them from
      * editing their name/color further
+     *
      * @param evt An event signifying the Player 2 Done Button was pressed
      */
     private void playerTwoDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerTwoDoneActionPerformed
         playerTwoInput.setEditable(false);
         playerTwoDrop.setEnabled(false);
         playerTwoName = playerTwoInput.getText();
-        playerTwoColor = (String)playerTwoDrop.getSelectedItem();
+        playerTwoColor = (String) playerTwoDrop.getSelectedItem();
         playerTwoReady = true;
     }//GEN-LAST:event_playerTwoDoneActionPerformed
 
     private void playerOneInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerOneInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_playerOneInputActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

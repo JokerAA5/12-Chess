@@ -4,9 +4,10 @@
  */
 package GUI;
 
-/**import GUI.playerSetup;
-
 /**
+ * import GUI.playerSetup;
+ *
+ * /**
  *
  * @author Nate
  */
@@ -89,8 +90,9 @@ public class titleScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * This method will move from the Title Screen to the Player setup screen once
-     * a user has clicked the Game Start Button
+     * This method will move from the Title Screen to the Player setup screen
+     * once a user has clicked the Game Start Button
+     *
      * @param evt Event signifying the Game Start Button was pressed
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
