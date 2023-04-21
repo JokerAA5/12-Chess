@@ -172,5 +172,12 @@ public class Game {
         return poss;
     }
     
+    public void reset(){
+        board.Board_init();
+        pTurn = 1;
+        win = 0;
+        win1hold = 0;
+        win2hold = 0;
+    }
     
 }

@@ -42,7 +42,7 @@ public class P1win extends javax.swing.JFrame {
         jLabel1.setBounds(0, 0, 600, 600);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jButton2.setText("Exit Game");
+        jButton2.setText("Close");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -68,7 +68,7 @@ public class P1win extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
