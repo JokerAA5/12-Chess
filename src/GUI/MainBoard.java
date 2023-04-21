@@ -80,10 +80,13 @@ public class MainBoard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(818, 612));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +96,6 @@ public class MainBoard extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Board.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Board.setPreferredSize(new java.awt.Dimension(818, 620));
 
         A1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/minister_piece_left.jpg"))); // NOI18N
@@ -255,15 +257,13 @@ public class MainBoard extends javax.swing.JFrame {
                                 .addGap(156, 156, 156)
                                 .addComponent(D3))
                             .addComponent(D2))))
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         A1.getAccessibleContext().setAccessibleName("");
         A1.getAccessibleContext().setAccessibleDescription("");
 
         getContentPane().add(Board, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 620, 470));
-
-        cap2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         c2_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/blank.jpg"))); // NOI18N
         c2_1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,7 +338,7 @@ public class MainBoard extends javax.swing.JFrame {
         cap2Layout.setVerticalGroup(
             cap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cap2Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(cap2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(c2_1)
                     .addComponent(c2_4))
@@ -352,9 +352,7 @@ public class MainBoard extends javax.swing.JFrame {
                     .addComponent(c2_6, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        getContentPane().add(cap2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 340, 310, 470));
-
-        cap1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(cap2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 330, 310, 470));
 
         c1_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/blank.jpg"))); // NOI18N
         c1_1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -429,7 +427,7 @@ public class MainBoard extends javax.swing.JFrame {
         cap1Layout.setVerticalGroup(
             cap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cap1Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(cap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(c1_1)
                     .addComponent(c1_4))
@@ -443,7 +441,7 @@ public class MainBoard extends javax.swing.JFrame {
                     .addComponent(c1_6, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        getContentPane().add(cap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 470));
+        getContentPane().add(cap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 310, 470));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setText("12 Chess");
@@ -460,7 +458,21 @@ public class MainBoard extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 130, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 60));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton2.setText("Exit");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 10, 130, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -546,12 +558,21 @@ public class MainBoard extends javax.swing.JFrame {
     
     private void updateGUI(){
         ImageIcon holdimg;
+        int win = game.checkWin();
         if(game.gturn() == 1){
             jLabel2.setText("Player 1 turn");
         }
         if(game.gturn() == 2){
             jLabel2.setText("Player 2 turn");
         }
+        //---------------------WIN CHECK------------------------
+        if(win == 1){
+            new P1win().setVisible(true);
+        }
+        if(win == 2){
+            new P2win().setVisible(true);
+        }
+        //---------------------WIN CHECK END--------------------
         for (int i = 2; i >= 0; i--){
             for (int j = 0; j <= 7; j++){
                 if(game.board.board[i][j] != null){
@@ -1267,6 +1288,15 @@ public class MainBoard extends javax.swing.JFrame {
         new rulesScreen().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1330,6 +1360,7 @@ public class MainBoard extends javax.swing.JFrame {
     private javax.swing.JLayeredPane cap1;
     private javax.swing.JLayeredPane cap2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
