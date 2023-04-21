@@ -81,6 +81,13 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
                         target.team = 1; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        if(target.identify() == "Lord"){
+                            Piece man = new Man();
+                            man.initialize(target.team); // set lord team as team of man
+                            man.setPosition(target.getPosition()); // set lord internal position as the internal position of man
+                            board.updateBoard_null( target.position.x,target.position.y ); //clear spot
+                            board.updateBoard(target.position.x,target.position.y, man); //place lord in spot
+                        }
                         return;
                     }
                 }
@@ -95,6 +102,13 @@ public abstract class Piece { //makes sure you have to go through subclasses to 
                         target.team = 2; //change owner
                         target.position.x = i;
                         target.position.y = j;
+                        if(target.identify() == "Lord"){
+                            Piece man = new Man();
+                            man.initialize(target.team); // set lord team as team of man
+                            man.setPosition(target.getPosition()); // set lord internal position as the internal position of man
+                            board.updateBoard_null( target.position.x,target.position.y ); //clear spot
+                            board.updateBoard(target.position.x,target.position.y, man); //place lord in spot
+                        }
                         return;
                     }
                 }

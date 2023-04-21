@@ -123,7 +123,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             tea = 0;
         }
         if (isValidMove(to, board)) {
-
+            if(this.isCaptured) this.isCaptured=false;
             if (hold != null && tea != this.team) {
                 capture(hold, board);
             }
@@ -132,7 +132,14 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
             board.updateBoard_null(from); // clear last space
             this.setPosition(to); //set possition in instance
 
-            if (to.x == 3) { //if the desired move space is the enemy territory change to a feudal lord (this should only be present in the Man subclass)
+            if (to.x == 3 && this.team == 1) { //if the desired move space is the enemy territory change to a feudal lord (this should only be present in the Man subclass)
+                Piece lord = new Lord();
+                lord.initialize(this.team); // set lord team as team of man
+                lord.setPosition(this.getPosition()); // set lord internal position as the internal position of man
+                board.updateBoard_null(to); //clear spot
+                board.updateBoard(to, lord); //place lord in spot
+            }
+             if (to.x == 0 && this.team == 2) { //if the desired move space is the enemy territory change to a feudal lord (this should only be present in the Man subclass)
                 Piece lord = new Lord();
                 lord.initialize(this.team); // set lord team as team of man
                 lord.setPosition(this.getPosition()); // set lord internal position as the internal position of man

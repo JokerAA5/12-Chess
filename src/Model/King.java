@@ -118,7 +118,7 @@ public class King extends Piece { //FINISHED(?)
             tea = 0;
         }
         if (isValidMove(to, board)) {
-
+            if(this.isCaptured) this.isCaptured=false;
             if (hold != null && tea != this.team) {
                 capture(hold, board);
             }
