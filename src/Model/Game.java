@@ -49,6 +49,8 @@ public class Game {
         //make sure to count return 3 and 4 values twice before win condition as this function will only tell you if the king is in enemy territory but not how long its been there
         int k1 = 0;
         int k2 = 0;
+        int hold1 = win1hold;
+        int hold2 = win2hold;
 
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 2; j++) {
@@ -70,6 +72,7 @@ public class Game {
                 }
                 win2hold++;
             }
+  
             if (board.identify(3, i, board) == "King" && board.board[i][3].getTeam() == 1) {//p1 king in p2 territory
                 if (win1hold == 1){
                     return 1;
@@ -85,11 +88,8 @@ public class Game {
         if (k2 == 0) {//p2 king dead
             return 1;
         }
-        
-        if (win1hold == 1 || win2hold == 1){
-        win1hold = 0;
-        win2hold = 0;
-        }
+       if (hold1 == win1hold) win1hold = 0;//if no change is detected in the win hold then no kings are in enemy territory so reset
+       if (hold2 == win2hold) win2hold = 0;
         return 0; //default return
     }
     

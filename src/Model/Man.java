@@ -82,6 +82,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
                         if (this.isCaptured && hold != null) { //captured pieces can only be placed in empty spots
                             return false;
                         }
+                        if (this.isCaptured && to.x == 3)return false;
                         return true;
                     } else {
                         return false;
@@ -95,6 +96,7 @@ public class Man extends Piece { //WIP lord conversion (in the move method at th
                         if (this.isCaptured && hold != null) {
                             return false;
                         }
+                        if (this.isCaptured && to.x == 3)return false;
                         return true;
                     } else {
                         return false;

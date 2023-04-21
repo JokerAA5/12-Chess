@@ -77,6 +77,7 @@ public class King extends Piece { //FINISHED(?)
                         if (this.isCaptured && hold != null) { //if its captured just make sure the space is empty
                             return false;
                         }
+                        if (this.isCaptured && to.x == 3)return false;
                         return true;
                     } else {
                         return false;
@@ -90,6 +91,7 @@ public class King extends Piece { //FINISHED(?)
                         if (this.isCaptured && hold != null) {
                             return false;
                         }
+                        if (this.isCaptured && to.x == 0)return false;
                         return true;
                     } else {
                         return false;
