@@ -17,10 +17,21 @@ public class Game {
     private int win1hold = 0; //hold variables for the king must stay in hostile terrirtory for 1 turn for win rule
     private int win2hold = 0;
     
+    /**
+     *initializes the internal game board
+     *
+     */
     public void start(){
         board.Board_init();
     }
     
+    /**
+     *returns a boolean based on if the requested move was preformed or not
+     *
+     * @param sfrom string representation of the starting space
+     * @param sto string representation if the destination space
+     * @return true if move was made, false if no move was made
+     */
     public Boolean gmove(String sfrom, String sto){
         Point from = translateInput(sfrom);
         Point to = translateInput(sto);
@@ -33,10 +44,18 @@ public class Game {
         return false;
     }
     
+    /**
+     *returns the int representation of which players turn it is
+     *@return integer representation of player turn
+     */
     public int gturn(){
         return pTurn;
     }
     
+    /**
+     *changes the turn from player 1s to player 2s or vice versa
+     *
+     */
     public void chngturn(){
         if(pTurn == 1){
             pTurn =2;
@@ -44,9 +63,13 @@ public class Game {
         else pTurn = 1;
     }
     
+    /**
+     *checks the board for the winning conditions.
+     *
+     * @return return value 1: p2 lost king p1 win. 2: p1 lost king p2 win. 1: p1 king in p2 territory for one turn. 2: p2 king in p1 territory for one turn.
+     */
     public int checkWin() {
-        //checks for win conditions for both teams. return value 1: p2 lost king p1 win. 2: p1 lost king p2 win. 3: p1 king in p2 territory. 4: p2 king in p1 territory.
-        //make sure to count return 3 and 4 values twice before win condition as this function will only tell you if the king is in enemy territory but not how long its been there
+        //checks for win conditions for both teams. return value 1: p2 lost king p1 win. 2: p1 lost king p2 win. 1: p1 king in p2 territory for one turn. 2: p2 king in p1 territory for one turn.
         int k1 = 0;
         int k2 = 0;
         int hold1 = win1hold;
@@ -93,6 +116,11 @@ public class Game {
         return 0; //default return
     }
     
+    /**
+     *returns a Point representing the coordiantes equate to that particular space on the board. for example "A1" would return a point with a x of 0 and y of 2
+     *
+     * @return Point coordinates of the provided space string name
+     */
     public Point translateInput(String cord) { //translates player input string into corresponding board coordinates
         Point poss = new Point();
         switch (cord) {
@@ -172,6 +200,10 @@ public class Game {
         return poss;
     }
     
+    /**
+     *resets the game state to initial values. used to start new games after the initial one has been played
+     *
+     */
     public void reset(){
         board.Board_init();
         pTurn = 1;
